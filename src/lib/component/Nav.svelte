@@ -1,16 +1,23 @@
 <script>
-    import {DarkMode, Navbar, NavBrand, NavHamburger, NavLi, NavUl} from 'flowbite-svelte';
+    import {page} from '$app/stores';
+    import {DarkMode, Navbar, NavBrand, NavLi, NavUl, NavHamburger} from 'flowbite-svelte';
+
+    $: activeUrl = $page.url.pathname;
 </script>
 
-<Navbar class="border-b">
-    <NavBrand href="/">
-        <DarkMode/>
-        <!--<img src="/images/flowbite-svelte-icon-logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />-->
-        <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">HandsOn</span>
-    </NavBrand>
-    <NavHamburger/>
-    <NavUl>
-        <NavLi href="/">Translator</NavLi>
-        <NavLi href="/about">Learn Sign Language</NavLi>
-    </NavUl>
-</Navbar>
+<div class="sticky">
+    <Navbar class="border-b">
+        <NavBrand href="/">
+            <!--<img src="/images/flowbite-svelte-icon-logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />-->
+            <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">HandsOn</span>
+        </NavBrand>
+        <div class="flex md:order-last">
+            <DarkMode/>
+        </div>
+        <NavHamburger/>
+        <NavUl {activeUrl} class="ml-auto">
+            <NavLi href="/">Translator</NavLi>
+            <NavLi href="study-ASL">Learn Sign Language</NavLi>
+        </NavUl>
+    </Navbar>
+</div>

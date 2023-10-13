@@ -1,21 +1,9 @@
 <script>
     import {onMount} from "svelte";
-
+    import * as camera from "../../Camera.js"
     onMount(() => {
         // This code will run after the component is mounted and the DOM is ready
-        let video = document.querySelector('#videoElement');
-
-        if (navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({video: true})
-                .then((stream) => {
-                    video.srcObject = stream;
-                })
-                .catch((error) => {
-                    console.log("Something went wrong!", error);
-                });
-        } else {
-            console.log("getUserMedia not supported!");
-        }
+        camera.cam()
     })
 </script>
 
@@ -36,7 +24,7 @@
 
 
 <div class="left-comp">
-    <video autoplay="true" id="videoElement">
+    <video autoplay="true" id="videoElement" class="rounded-lg">
         <track kind="captions">
     </video>
 </div>

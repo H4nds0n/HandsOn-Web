@@ -1,5 +1,10 @@
 <script>
     import {Button, Textarea} from 'flowbite-svelte';
+
+    let textareaValue = '';
+    const clearOnAction = () => {
+        textareaValue = '';
+    };
 </script>
 
 <style>
@@ -21,15 +26,12 @@
     .right-button {
         flex: 1; /* Distribute available space evenly between buttons */
     }
-
-    #textID {
-    }
 </style>
 
 <div class="container">
-    <Textarea id="textID" placeholder="Translated Message. . ."/>
+    <Textarea id="textID" rows="50" placeholder="Translated Message. . ." bind:value={textareaValue}/>
     <div class="button-container">
         <Button class="left-button">Reverse</Button>
-        <Button class="right-button">Clear</Button>
+        <Button class="right-button" on:click={clearOnAction}>Clear</Button>
     </div>
 </div>

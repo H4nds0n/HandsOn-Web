@@ -1,4 +1,4 @@
-const cam = () => {
+export function cam() {
     let video = document.querySelector('#videoElement');
 
     if (navigator.mediaDevices.getUserMedia) {
@@ -8,8 +8,8 @@ const cam = () => {
                 video.srcObject = stream;
             })
             .catch((error) => {
-                console.log("Something went wrong!");
-            })
+                console.log("Something went wrong!", error);
+            });
     } else {
         console.log("getUserMedia not supported!");
     }
