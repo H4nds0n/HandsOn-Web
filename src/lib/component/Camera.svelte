@@ -4,7 +4,7 @@
 
     onMount(() => {
         // This code will run after the component is mounted and the DOM is ready
-        camera.cam()
+        camera.startCamera();
     })
 </script>
 
