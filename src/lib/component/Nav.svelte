@@ -16,8 +16,8 @@
         </div>
         <NavHamburger/>
         <NavUl {activeUrl} class="ml-auto">
-            <NavLi href="/">Translator</NavLi>
-            <NavLi href="study-ASL">Learn Sign Language</NavLi>
+            <NavLi href="/" active={activeUrl === '/'}>Translator</NavLi>
+            <NavLi href="/study-ASL" active={activeUrl === "/study-ASL"}>Learn Sign Language</NavLi>
         </NavUl>
     </Navbar>
 </div>

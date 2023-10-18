@@ -1,6 +1,7 @@
 <script>
     import {onMount} from "svelte";
     import * as camera from "../../Camera.js"
+
     onMount(() => {
         // This code will run after the component is mounted and the DOM is ready
         camera.cam()
