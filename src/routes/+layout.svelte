@@ -3,6 +3,7 @@
   import Nav from "$lib/component/Nav.svelte";
   import Camera from "$lib/component/Camera.svelte";
   import TextArea from "$lib/component/TextArea.svelte";
+  import PopupASL from "$lib/component/PopupASL.svelte";
 </script>
 
 <style>
@@ -21,5 +22,7 @@
     <Camera/>
     <TextArea/>
 </div>
+
+<PopupASL/>
 
 <slot />

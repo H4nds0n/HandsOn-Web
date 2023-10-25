@@ -1,5 +1,4 @@
 let mediaRecorder;
-let recordedChunks = [];
 
 export async function startCamera() {
     let video = document.querySelector('#videoElement');
@@ -17,7 +16,7 @@ export async function startCamera() {
                     sendDataToBackend(event.data);
                 };
 
-                mediaRecorder.start(2000);
+                mediaRecorder.start(500);
             })
             .catch((error) => {
                 console.log("Something went wrong!", error);
@@ -27,19 +26,11 @@ export async function startCamera() {
     }
 }
 
-function handleDataAvailable(event) {
-    if (event.data.size > 0) {
-        recordedChunks.push(event.data);
-        sendDataToBackend(event.data);
-    }
-}
-
 export async function sendDataToBackend(data) {
     const formData = new FormData();
     formData.append("video", data);
 
     console.log('Data: ' + formData);
-
 
     try {
         const response = await fetch("http://localhost:5000/streaming", {

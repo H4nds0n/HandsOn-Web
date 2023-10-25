@@ -1,10 +1,16 @@
 <script>
     import {Button, Textarea} from 'flowbite-svelte';
+    import {scrollableModal, textareaValue} from "$lib/scripts/stores.js";
+    import {text_to_images} from '../../TextToASL.js'
 
-    let textareaValue = '';
     const clearOnAction = () => {
-        textareaValue = '';
+        textareaValue.set('')
     };
+
+    function updateASL() {
+        scrollableModal.update(() => true)
+    }
+
 </script>
 
 <style>
@@ -29,9 +35,12 @@
 </style>
 
 <div class="container">
-    <Textarea id="textID" rows="50" placeholder="Translated Message. . ." bind:value={textareaValue}/>
+    <Textarea id="textID" rows="50" placeholder="Translated Message. . ." bind:value={$textareaValue}/>
     <div class="button-container">
-        <Button class="left-button">Reverse</Button>
+        <Button class="left-button" on:click={()=>{
+            text_to_images();
+            updateASL();
+        }}>Reverse</Button>
         <Button class="right-button" on:click={clearOnAction}>Clear</Button>
     </div>
 </div>
