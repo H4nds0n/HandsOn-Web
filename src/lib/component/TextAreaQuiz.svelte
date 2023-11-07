@@ -4,7 +4,11 @@
     import * as Quiz from "../../Quiz.js";
 
     const skip = () => {
-            alert(Quiz.generateQuestion());
+            Quiz.generateQuestion();
+    }
+
+    const nextQuestion = () => {
+        Quiz.generateQuestion();
     }
 
     quizActive.set(true);
@@ -31,8 +35,9 @@
 </style>
 
 <div class="container">
-    <Textarea id="textID" rows="50" placeholder="Translated Message. . ." bind:value={$textareaValue}/>
+    <Textarea id="textID" rows="50" placeholder="Translated Message. . ." bind:value={$textareaValue} readonly/>
     <div class="button-container">
         <Button class="left-button" on:click={skip}>Skip</Button>
+        <Button class="right-button" on:click={nextQuestion}>New Question</Button>
     </div>
 </div>
