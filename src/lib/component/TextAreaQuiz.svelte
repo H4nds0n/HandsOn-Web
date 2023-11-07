@@ -1,18 +1,13 @@
 <script>
     import {Button, Textarea} from 'flowbite-svelte';
     import {scrollableModal, textareaValue, quizActive} from "$lib/scripts/stores.js";
-    import {text_to_images} from '../../TextToASL.js'
+    import * as Quiz from "../../Quiz.js";
 
-    const clearOnAction = () => {
-        textareaValue.set('')
-    };
-
-    function updateASL() {
-        scrollableModal.update(() => true)
+    const skip = () => {
+            alert(Quiz.generateQuestion());
     }
 
-
-    quizActive.set(false)
+    quizActive.set(true);
 </script>
 
 <style>
@@ -30,8 +25,7 @@
         gap: 10px; /* Space between items */
     }
 
-    .left-button,
-    .right-button {
+    .left-button {
         flex: 1; /* Distribute available space evenly between buttons */
     }
 </style>
@@ -39,10 +33,6 @@
 <div class="container">
     <Textarea id="textID" rows="50" placeholder="Translated Message. . ." bind:value={$textareaValue}/>
     <div class="button-container">
-        <Button class="left-button" on:click={()=>{
-            text_to_images();
-            updateASL();
-        }}>Reverse</Button>
-        <Button class="right-button" on:click={clearOnAction}>Clear</Button>
+        <Button class="left-button" on:click={skip}>Skip</Button>
     </div>
 </div>

@@ -1,3 +1,5 @@
+import * as Quiz from "./Quiz.js";
+import {quizActive} from "$lib/scripts/stores.js"
 let mediaRecorder;
 
 export async function startCamera() {
@@ -13,10 +15,23 @@ export async function startCamera() {
 
                 //mediaRecorder.ondataavailable = handleDataAvailable;
                 mediaRecorder.ondataavailable = (event) => {
-                    sendDataToBackend(event.data);
+                    let response = sendDataToBackend(event.data);
+                    let quiz = false;
+                    quizActive.subscribe(value => {
+                        quiz = value;
+                    });
+
+                    if(quiz) response.then(data => {Quiz.checkAnswer(JSON.stringify(data)); console.log("Data= " + JSON.stringify(data))})                  
                 };
 
                 mediaRecorder.start(500);
+
+                let quiz = false;
+                    quizActive.subscribe(value => {
+                        quiz = value;
+                    });
+
+                    if(quiz) Quiz.generateQuestion()
             })
             .catch((error) => {
                 console.log("Something went wrong!", error);
@@ -38,6 +53,7 @@ export async function sendDataToBackend(data) {
             body: formData,
         });
         console.log("Response from backend:", response);
+        return response;
     } catch (error) {
         console.error("Error sending data to backend:", error);
     }
