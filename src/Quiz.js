@@ -13,6 +13,7 @@ export function generateQuestion() {
 
 
 export function checkAnswer(answer) {
+    answer = "B"
     if(question != "" && !answerCorrect) {
        let correct = answer == question
        let text = "";
