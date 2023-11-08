@@ -5,12 +5,6 @@
 </script>
 
 <style>
-    .parent-container{
-        height: 80vh;
-        padding: 10px;
-        display: flex;
-        column-gap: 20px;
-    }
 
 </style>
 

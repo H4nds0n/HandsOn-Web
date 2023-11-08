@@ -45,13 +45,11 @@ export async function sendDataToBackend(data) {
     const formData = new FormData();
     formData.append("video", data);
 
-    console.log('Data: ' + formData);
-
-    try {
+        try {
         const response = await fetch("http://localhost:5000/streaming", {
             method: "POST",
             body: formData,
-        });
+        }).then(res => res.json());
         console.log("Response from backend:", response);
         return response;
     } catch (error) {
