@@ -37,9 +37,11 @@
                 body: JSON.stringify(data)
             }).then(data => data.json());
             console.log(letter)
+            textareaValue.update(currentValue => currentValue + letter.letter);
 
             // You can now send 'imageData' to your server or perform any other actions
         }, captureInterval);
+
     })
 </script>
 
