@@ -1,7 +1,7 @@
 <script>
     import {Button, Textarea} from 'flowbite-svelte';
     import {scrollableModal, textareaValue, quizActive} from "$lib/scripts/stores.js";
-    import {text_to_images} from '../../TextToASL.js'
+    import {text_to_images} from '../scripts/TextToASL.js'
 
     const clearOnAction = () => {
         textareaValue.set('')

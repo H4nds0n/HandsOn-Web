@@ -1,6 +1,7 @@
 <script>
     import {onMount} from "svelte";
-    import * as camera from "../../Camera.js"
+    import * as camera from "$lib/scripts/Camera.js"
+    import {textareaValue} from "$lib/scripts/stores.js";
 
     onMount(() => {
         // This code will run after the component is mounted and the DOM is ready
@@ -28,4 +29,5 @@
     <video autoplay="true" id="videoElement" class="rounded-lg">
         <track kind="captions">
     </video>
+    <canvas id="frame"></canvas>
 </div>

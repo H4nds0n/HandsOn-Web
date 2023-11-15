@@ -1,7 +1,7 @@
 <script>
     import {Button, Textarea} from 'flowbite-svelte';
     import {scrollableModal, textareaValue, quizActive} from "$lib/scripts/stores.js";
-    import * as Quiz from "../../Quiz.js";
+    import * as Quiz from "../scripts/Quiz.js";
 
     const skip = () => {
             Quiz.generateQuestion();

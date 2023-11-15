@@ -1,13 +1,7 @@
 <script>
     import {Button, Modal, Gallery} from 'flowbite-svelte';
     import {scrollableModal} from "$lib/scripts/stores.js";
-    import {images} from "../../TextToASL.js";
-
-    const images1 = [
-        {alt: 'erbology', src: 'src/lib/images/a.jpg'},
-        {alt: 'shoes', src: 'src/lib/images/b.jpg'},
-        {alt: 'small bag', src: 'src/lib/images/c.jpg'}
-    ];
+    import {images} from "../scripts/TextToASL.js";
 </script>
 
 <style>

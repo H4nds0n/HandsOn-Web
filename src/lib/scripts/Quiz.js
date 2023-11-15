@@ -1,4 +1,5 @@
 import {textareaValue} from "$lib/scripts/stores.js";
+
 let question = "";
 let answerCorrect = false;
 
@@ -13,25 +14,24 @@ export function generateQuestion() {
 
 
 export function checkAnswer(answer) {
-    if(question != "" && !answerCorrect) {
-       let correct = answer == question
-       let text = "";
+    if (question != "" && !answerCorrect) {
+        let correct = answer == question
+        let text = "";
         textareaValue.subscribe(value => {
             text = value;
-        });                    
+        });
 
         let addition = "";
-                        
-        if(correct) {
+
+        if (correct) {
             addition = "Your answer was correct!";
             answerCorrect = true;
-        }
-        else {
+        } else {
             addition = "Try again"
         }
-        
+
         text = "Say: " + question + "\n" + addition;
         textareaValue.set(text);
-        }
-    
+    }
+
 }
