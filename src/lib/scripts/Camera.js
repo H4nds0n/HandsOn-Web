@@ -2,7 +2,9 @@ import * as Quiz from "./Quiz.js";
 import {quizActive, textareaValue} from "$lib/scripts/stores.js"
 
 
-export let letter = {letter: "", conf:0.0}
+export let letter = {letter: "", conf: 0.0}
+
+let oldLetter = ''
 
 export async function startCamera() {
     if (navigator.mediaDevices.getUserMedia) {
@@ -42,7 +44,10 @@ export async function startCamera() {
             }).then(data => data.json());
             console.log(letter);
 
-            textareaValue.update(currentValue => currentValue + letter.letter);
+            if (letter.letter !== oldLetter) {
+                oldLetter = letter.letter
+                textareaValue.update(currentValue => currentValue + letter.letter);
+            }
 
             // You can now send 'imageData' to your server or perform any other actions
         }, captureInterval);
@@ -53,7 +58,7 @@ export async function startCamera() {
             quiz = value;
         });
 
-        if(quiz) Quiz.generateQuestion()
+        if (quiz) Quiz.generateQuestion()
 
         /*
         let quiz = false;
@@ -66,19 +71,5 @@ export async function startCamera() {
          */
     } else {
         console.log("getUserMedia not supported!");
-    }
-}
-
-export async function sendDataToBackend(data) {
-
-        try {
-        const response = await fetch("http://localhost:5000/streaming", {
-            method: "POST",
-            body: data,
-        }).then(res => res.json());
-        console.log("Response from backend:", response);
-        return response;
-    } catch (error) {
-        console.error("Error sending data to backend:", error);
     }
 }
