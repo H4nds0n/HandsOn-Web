@@ -2,8 +2,7 @@ import * as Quiz from "./Quiz.js";
 import {quizActive, textareaValue} from "$lib/scripts/stores.js"
 
 
-export let letter = {letter: "", conf: 0.0}
-
+export let letter = {letter: "", conf: 0.0, handExists: false}
 let oldLetter = ''
 
 export async function startCamera() {

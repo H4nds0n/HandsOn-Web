@@ -9,7 +9,7 @@
 
     function updateASL() {
         scrollableModal.update(() => true)
-    }
+s    }
 
 
     quizActive.set(false)

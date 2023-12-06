@@ -7,20 +7,21 @@
     import "../app.postcss";
     import Camera from "$lib/component/Camera.svelte";
     import TextArea from "$lib/component/TextArea.svelte";
-  </script>
-  
-  <style>
-      .parent-container{
-          height: 80vh;
-          padding: 10px;
-          display: flex;
-          column-gap: 20px;
-      }
-  
-  </style>
-  <div class="parent-container">
-      <Camera/>
-      <TextArea/>
-  </div>
-  
-  <slot />
+</script>
+
+<style>
+    .parent-container {
+        height: 80vh;
+        padding: 10px;
+        display: flex;
+        column-gap: 20px;
+    }
+
+</style>
+
+<div class="parent-container">
+    <Camera/>
+    <TextArea/>
+</div>
+
+<slot/>
