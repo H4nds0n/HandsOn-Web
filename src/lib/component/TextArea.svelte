@@ -1,10 +1,11 @@
 <script>
     import {Button, Textarea} from 'flowbite-svelte';
-    import {scrollableModal, textareaValue, quizActive} from "$lib/scripts/stores.js";
+    import {scrollableModal, textareaValue, quizActive, textHistory} from "$lib/scripts/stores.js";
     import {text_to_images} from '../scripts/TextToASL.js'
 
     const clearOnAction = () => {
-        textareaValue.set('')
+        $textHistory.push($textareaValue);
+        textareaValue.set('');
     };
 
     function updateASL() {
@@ -43,6 +44,6 @@ s    }
             text_to_images();
             updateASL();
         }}>Reverse</Button>
-        <Button class="right-button" on:click={clearOnAction}>Clear</Button>
+        <Button class="right-button" on:click={clearOnAction}>Save & Clear</Button>
     </div>
 </div>
