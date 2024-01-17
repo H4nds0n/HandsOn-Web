@@ -7,6 +7,7 @@
     import "../app.postcss";
     import Camera from "$lib/component/Camera.svelte";
     import TextArea from "$lib/component/TextArea.svelte";
+    import TextHistory from "$lib/component/TextHistory.svelte";
 </script>
 
 <style>
@@ -19,6 +20,7 @@
 
 </style>
 
+<TextHistory/>
 <div class="parent-container">
     <Camera/>
     <TextArea/>

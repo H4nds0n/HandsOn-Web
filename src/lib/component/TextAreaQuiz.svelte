@@ -12,6 +12,8 @@
     }
 
     quizActive.set(true);
+
+
 </script>
 
 <style>
