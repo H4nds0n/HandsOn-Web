@@ -8,6 +8,9 @@
     import Camera from "$lib/component/Camera.svelte";
     import TextArea from "$lib/component/TextArea.svelte";
     import TextHistory from "$lib/component/TextHistory.svelte";
+    import {textareaValue} from "$lib/scripts/stores.js";
+
+    textareaValue.set('');
 </script>
 
 <style>
@@ -17,10 +20,8 @@
         display: flex;
         column-gap: 20px;
     }
-
 </style>
 
-<TextHistory/>
 <div class="parent-container">
     <Camera/>
     <TextArea/>
