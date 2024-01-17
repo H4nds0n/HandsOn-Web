@@ -1,14 +1,13 @@
 <script>
     import {Toast} from "flowbite-svelte";
     import {showNotification} from "$lib/scripts/stores.js";
-
-    let open = false;
-
-    showNotification.subscribe((value) => {
-        open = value
-    })
+    import {InfoCircleSolid} from "flowbite-svelte-icons";
 </script>
 
-<Toast bind:open>
-    There are no hands detected.
+<Toast color="blue" dismissable={false} class="border-solid border-2 border-cyan-900 z-50 left-[42%]"
+       position="top-left" bind:open={$showNotification}>
+    <svelte:fragment slot="icon">
+        <InfoCircleSolid class="w-5 h-5"/>
+    </svelte:fragment>
+    There are no hands being detected.
 </Toast>
