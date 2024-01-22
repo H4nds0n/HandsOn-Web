@@ -1,19 +1,28 @@
 <script>
     import {Button, Textarea} from 'flowbite-svelte';
-    import {scrollableModal, textareaValue, quizActive} from "$lib/scripts/stores.js";
+    import {scrollableModal, textareaValue, quizActive, letterQuestion, leveltwo} from "$lib/scripts/stores.js";
     import * as Quiz from "../scripts/Quiz.js";
 
+    let question = ""
+    let isLevelTwo = false
+
+    leveltwo.subscribe((value) => isLevelTwo = value)
+    letterQuestion.subscribe((value) => question = value)
+
     const skip = () => {
-            Quiz.generateQuestion();
+            Quiz.generateQuestion()
+            textareaValue.set("Say: " + question)
     }
 
-    const nextQuestion = () => {
-        Quiz.generateQuestion();
+    const switchLevel = () => {
+        leveltwo.set(!isLevelTwo)
     }
 
-    quizActive.set(true);
-
-
+    
+    quizActive.set(true)
+    
+    Quiz.generateQuestion()
+    textareaValue.set("Say: " + question)
 </script>
 
 <style>
@@ -40,6 +49,6 @@
     <Textarea id="textID" rows="50" placeholder="Translated Message. . ." bind:value={$textareaValue} readonly/>
     <div class="button-container">
         <Button class="left-button" on:click={skip}>Skip</Button>
-        <Button class="right-button" on:click={nextQuestion}>New Question</Button>
+        <Button class="right-button" on:click={switchLevel}>Switch Level</Button>
     </div>
 </div>

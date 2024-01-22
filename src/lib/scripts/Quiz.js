@@ -1,21 +1,33 @@
-import {textareaValue} from "$lib/scripts/stores.js";
+import {letterQuestion, textareaValue, answerCorrect, wordQuestion, wordAnswer} from "$lib/scripts/stores.js";
 
-let question = "";
-let answerCorrect = false;
+let alphabet = "ABC"
+let words = ["CCC", "CAA"]
+let randomLetterIndex = Math.floor(Math.random() * alphabet.length)
+let randomWordIndex = Math.floor(Math.random() * words.length)
+let questionL = alphabet[randomLetterIndex]
+let questionW = alphabet[randomWordIndex]
+let correct = false
+answerCorrect.subscribe((value) => correct = value)
 
 export function generateQuestion() {
-    let alphabet = "ABC"
-    let randomIndex = Math.floor(Math.random() * alphabet.length)
-    question = alphabet[randomIndex]
-    textareaValue.set("Say: " + question)
-    answerCorrect = false
-    return question
+    do{
+        randomLetterIndex = Math.floor(Math.random() * alphabet.length)
+    }while(alphabet[randomLetterIndex] == questionL)
+    do{
+        randomWordIndex = Math.floor(Math.random() * words.length)
+    }while(words[randomWordIndex] == questionW)
+
+    questionL = alphabet[randomLetterIndex]
+    questionW = words[randomWordIndex]
+    answerCorrect.set(false)
+    letterQuestion.set(questionL)
+    wordQuestion.set(questionW)
 }
 
 
 export function checkAnswer(answer) {
-    if (question != "" && !answerCorrect) {
-        let correct = answer == question
+    if (questionL != "" && !correct) {
+        let correct = answer == questionL
         let text = "";
         textareaValue.subscribe(value => {
             text = value;
@@ -25,12 +37,12 @@ export function checkAnswer(answer) {
 
         if (correct) {
             addition = "Your answer was correct!";
-            answerCorrect = true;
+            correct = true;
         } else {
             addition = "Try again"
         }
 
-        text = "Say: " + question + "\n" + addition;
+        text = "Say: " + questionL + "\n" + addition;
         textareaValue.set(text);
     }
 
