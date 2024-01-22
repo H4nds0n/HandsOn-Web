@@ -17,3 +17,4 @@ export let leveltwo = writable(false)
 
 export const hideHistory = writable(true);
 export let textHistory = writable([]);
+export const showNotification = writable(false);

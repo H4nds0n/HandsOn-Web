@@ -1,5 +1,6 @@
 import * as Quiz from "./Quiz.js";
-import {answerCorrect, quizActive, letterAnswer, letterQuestion, textareaValue, leveltwo, wordQuestion, wordAnswer} from "$lib/scripts/stores.js"
+
+import {answerCorrect, quizActive, letterAnswer, letterQuestion, textareaValue, leveltwo, wordQuestion, wordAnswer, quizActive, showNotification, textareaValue} from "$lib/scripts/stores.js"
 
 
 export let letter = {letter: "", conf: 0.0, handExists: false}
@@ -71,6 +72,8 @@ export async function startCamera() {
                 textareaValue.update(currentValue => currentValue + letter.letter);
             }
 
+            showNotification.set(letter.handExists)
+          
             if(isQuiz) {
                 if(letter.letter !== oldLetter) {
                     oldLetter = letter.letter
@@ -103,8 +106,6 @@ export async function startCamera() {
                     }
                 }
             }
-            
-
             // You can now send 'imageData' to your server or perform any other actions
         }, captureInterval);
 
