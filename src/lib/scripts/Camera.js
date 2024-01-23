@@ -1,11 +1,20 @@
 import * as Quiz from "./Quiz.js";
 
-import {answerCorrect, quizActive, letterAnswer, letterQuestion, textareaValue, leveltwo, wordQuestion, wordAnswer, quizActive, showNotification, textareaValue} from "$lib/scripts/stores.js"
+import {answerCorrect, quizActive, letterAnswer, letterQuestion, textareaValue, leveltwo, wordQuestion, wordAnswer, showNotification} from "$lib/scripts/stores.js"
 
-
+/**
+ * object of letter, confidential rate and if hand is shown on the camera
+ * @type {{handExists: boolean, letter: string, conf: number}}
+ */
 export let letter = {letter: "", conf: 0.0, handExists: false}
 let oldLetter = ''
 
+/**
+ * Start the camera and the user can show ASL to the camera.
+ * Camera sends the handsign to the Backend server to receive the
+ * letter.
+ * @returns {Promise<void>}
+ */
 export async function startCamera() {
     if (navigator.mediaDevices.getUserMedia) {
         let video = document.querySelector('#videoElement');

@@ -1,7 +1,11 @@
+<!--
+Design for the Camera
+-->
 <script>
     import {onMount} from "svelte";
     import * as camera from "$lib/scripts/Camera.js"
 
+    //onMount == wait till DOM is initialized otherwise an exception occurs
     onMount(() => {
         // This code will run after the component is mounted and the DOM is ready
         camera.startCamera();

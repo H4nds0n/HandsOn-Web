@@ -1,3 +1,6 @@
+<!--
+Layout.svelte is used for all svelte files in "routes" folder
+ -->
 <script>
     import "../app.postcss";
     import Nav from "$lib/component/Nav.svelte";

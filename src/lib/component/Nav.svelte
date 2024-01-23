@@ -1,7 +1,11 @@
+<!--
+Navbar - switch between Translator and Study session
+-->
+
 <script>
     import {page} from '$app/stores';
     import {DarkMode, Navbar, NavBrand, NavLi, NavUl, NavHamburger, Button, Label} from 'flowbite-svelte';
-    import {ArrowRightOutline, BarsSolid} from "flowbite-svelte-icons";
+    import {BarsSolid} from "flowbite-svelte-icons";
     import {hideHistory} from "$lib/scripts/stores.js";
 
     $: activeUrl = $page.url.pathname;

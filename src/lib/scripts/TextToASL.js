@@ -1,5 +1,9 @@
 import {textareaValue} from "$lib/scripts/stores.js";
 
+/**
+ * An Array of letters and its image
+ * @type {*[]}
+ */
 export let images = [];
 
 export function text_to_images() {

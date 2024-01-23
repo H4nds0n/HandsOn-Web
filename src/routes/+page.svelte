@@ -1,13 +1,11 @@
 <!--
-<h1 class="dark:text-gray-400">Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+"Main Page" like index.html
+Navbar, Camera, TextArea is being shown
 -->
-
 <script>
     import "../app.postcss";
     import Camera from "$lib/component/Camera.svelte";
     import TextArea from "$lib/component/TextArea.svelte";
-    import TextHistory from "$lib/component/TextHistory.svelte";
     import {textareaValue} from "$lib/scripts/stores.js";
 
     textareaValue.set('');

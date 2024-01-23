@@ -1,3 +1,6 @@
+<!--
+This is a PopUp-Window that shows the correct handsign for letters that are written in the TextArea
+-->
 <script>
     import {Button, Modal, Gallery} from 'flowbite-svelte';
     import {scrollableModal} from "$lib/scripts/stores.js";
