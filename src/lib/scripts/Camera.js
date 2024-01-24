@@ -1,5 +1,5 @@
 import * as Quiz from "./Quiz.js";
-import {answerCorrect, quizActive, letterAnswer, letterQuestion, textareaValue, leveltwo, wordQuestion, wordAnswer} from "$lib/scripts/stores.js"
+import {answerCorrect, quizActive, letterAnswer, letterQuestion, textareaValue, leveltwo, wordQuestion, wordAnswer, counter} from "$lib/scripts/stores.js"
 
 
 export let letter = {letter: "", conf: 0.0, handExists: false}
@@ -24,16 +24,19 @@ export async function startCamera() {
         ctx.canvas.hidden = true;
         const captureInterval = 200; // milliseconds
 
-        let counter = 0
 
-        let isQuiz = false
-        let questionLetter = ""
-        let answerLetter = ""
-        let correct = false
-        let isLevelTwo = false
-        let questionWord = ""
-        let answerWord = ""
+        let count = 0               // size of the answer
+        let isQuiz = false          // quiz-mode enabled
+        let questionLetter = ""     // question (letter)
+        let answerLetter = ""       // answer (letter)
+        let correct = false         // true, if answer was correct
+        let isLevelTwo = false      // true, if words are genraterated as questions
+        let questionWord = ""       // question (word)
+        let answerWord = ""         // answer (word)
 
+
+        //subscribe to variables to listen for changes
+        counter.subscribe((value) => count = value)
         quizActive.subscribe((value) => isQuiz = value)
         letterQuestion.subscribe((value) => questionLetter = value)
         letterAnswer.subscribe((value) => {
@@ -65,6 +68,7 @@ export async function startCamera() {
             }).then(data => data.json());
             console.log(letter);
 
+            // if the  answer was the same as the last, it is filtered
             if (letter.letter !== oldLetter && !isQuiz) {
                 oldLetter = letter.letter
 
@@ -78,25 +82,34 @@ export async function startCamera() {
                     letterAnswer.set(letter.letter)
                     
                 }
+                // question is a letter
                 if(!isLevelTwo){
                     textareaValue.set("Say: " + questionLetter + "\nYour Answer: " + answerLetter)
+
+                    // remove any spaces before and after
                     if(questionLetter.trim() === answerLetter.trim()) {
                        alert("You got the correct Answer!")
                         answerCorrect.set(true)
                         Quiz.generateQuestion()
                     }
                 }
+                // question is a word
                 else {
                     textareaValue.set("Say: " + questionWord + "\nYour Answer: " + answerWord + answerLetter)
-                    if(questionWord[counter] === answerLetter.trim()) {
+
+                    // if the answered letter matches the current letter of the question and
+                    // the length counter is raised
+                    if(questionWord[count] === answerLetter.trim()) {
                         wordAnswer.update(currentValue => currentValue + answerLetter)
-                        counter++
+                        counter.update(currentValue => currentValue++)
                     }
-                    if(counter >= questionWord.length) {
+                    // if condition is true, the answer matches the question and
+                    // the "answer correct"-message is displayed
+                    if(count >= questionWord.length) {
                         textareaValue.set("Say: " + questionWord + "\nYour Answer: " + questionWord)
                         
                         answerCorrect.set(true)
-                        counter = 0
+                        counter.set(0)
                         wordAnswer.set("")
                         Quiz.generateQuestion()
                         alert("You got the correct Answer!")
