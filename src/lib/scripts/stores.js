@@ -19,6 +19,8 @@ export let wordAnswer = writable("");
 export let answerCorrect = writable(false)
 export let leveltwo = writable(false)
 
+export let counter = writable(0)
+
 export const hideHistory = writable(true);
 export let textHistory = writable([]);
 export const showNotification = writable(false);
