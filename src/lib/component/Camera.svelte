@@ -1,3 +1,6 @@
+<!--
+Design for the Camera
+-->
 <script>
     import {onMount} from "svelte";
     import * as camera from "$lib/scripts/Camera.js"

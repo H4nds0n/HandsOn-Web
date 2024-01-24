@@ -1,3 +1,7 @@
+<!--
+The user will get notified if the camera does not detect
+any hands.
+-->
 <script>
     import {Toast} from "flowbite-svelte";
     import {showNotification} from "$lib/scripts/stores.js";

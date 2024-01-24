@@ -1,3 +1,6 @@
+<!--
+Navbar - switch between Translator and Study session
+-->
 <script>
     import {page} from '$app/stores';
     import {DarkMode, Navbar, NavBrand, NavLi, NavUl, NavHamburger, Button, Label} from 'flowbite-svelte';

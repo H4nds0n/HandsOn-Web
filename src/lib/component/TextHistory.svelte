@@ -1,3 +1,7 @@
+<!--
+The user has the possibility to save his texts in the TextArea.
+The saved Texts will be shown here.
+-->
 <script>
     import {
         Drawer,

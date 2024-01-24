@@ -1,3 +1,8 @@
+<!--
+In the TextArea can either write a text on his own so that he can convert the
+text into ASL or the handsign he is showing to the camera will get displayed in
+the TextArea.
+-->
 <script>
     import {Button, Textarea} from 'flowbite-svelte';
     import {scrollableModal, textareaValue, quizActive, textHistory} from "$lib/scripts/stores.js";

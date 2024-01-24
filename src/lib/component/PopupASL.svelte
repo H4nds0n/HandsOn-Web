@@ -12,7 +12,9 @@
 </style>
 
 <Modal title="Text to ASL" bind:open={$scrollableModal} autoclose>
-
+<!--
+This is a PopUp-Window that shows the correct handsign for letters that are written in the TextArea
+-->
     {#if images.length > 0}
         <div class="gallery items-center">
             <Gallery items={images} class="gap-4 grid-cols-1 md:grid-cols-1" let:item>
