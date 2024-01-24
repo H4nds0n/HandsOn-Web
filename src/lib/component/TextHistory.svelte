@@ -1,15 +1,16 @@
+<!--
+The user has the possibility to save his texts in the TextArea.
+The saved Texts will be shown here.
+-->
 <script>
     import {
         Drawer,
-        Button,
         CloseButton,
         Table,
-        TableHead,
-        TableHeadCell,
         TableBody,
         TableBodyRow, TableBodyCell
     } from 'flowbite-svelte';
-    import {InfoCircleSolid, ArrowRightOutline} from 'flowbite-svelte-icons';
+    import {InfoCircleSolid} from 'flowbite-svelte-icons';
     import {sineIn} from 'svelte/easing';
     import {hideHistory, textHistory} from "$lib/scripts/stores.js";
 

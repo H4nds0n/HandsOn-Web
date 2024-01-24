@@ -1,3 +1,6 @@
+<!--
+This is a PopUp-Window that shows the correct handsign for letters that are written in the TextArea
+-->
 <script>
     import {Button, Modal, Gallery} from 'flowbite-svelte';
     import {scrollableModal} from "$lib/scripts/stores.js";
@@ -14,7 +17,7 @@
 <Modal title="Text to ASL" bind:open={$scrollableModal} autoclose>
 
     {#if images.length > 0}
-        <div class="gallery">
+        <div class="gallery items-center">
             <Gallery items={images} class="gap-4 grid-cols-1 md:grid-cols-1" let:item>
                 <img src={item.src} alt={item.alt} width="200" height="200" class="rounded-lg"/>
             </Gallery>

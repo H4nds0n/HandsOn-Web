@@ -1,3 +1,7 @@
+/**
+ * Store variables are useful because they are usable to any .js and .svelte files
+ * and store variables can be binded to a Svelte Component
+ */
 import {writable} from "svelte/store";
 
 export const scrollableModal = writable(false);
@@ -19,3 +23,4 @@ export let counter = writable(0)
 
 export const hideHistory = writable(true);
 export let textHistory = writable([]);
+export const showNotification = writable(false);
