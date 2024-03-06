@@ -10,12 +10,12 @@ let correct = false
 answerCorrect.subscribe((value) => correct = value)
 
 export function generateQuestion() {
-    do{
+    do {
         randomLetterIndex = Math.floor(Math.random() * alphabet.length)
-    }while(alphabet[randomLetterIndex] == questionL)
-    do{
+    } while (alphabet[randomLetterIndex] == questionL)
+    do {
         randomWordIndex = Math.floor(Math.random() * words.length)
-    }while(words[randomWordIndex] == questionW)
+    } while (words[randomWordIndex] == questionW)
 
     questionL = alphabet[randomLetterIndex]
     questionW = words[randomWordIndex]

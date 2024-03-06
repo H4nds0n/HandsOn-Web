@@ -3,11 +3,14 @@ Design for the Camera
 -->
 <script>
     import {onMount} from "svelte";
-    import * as camera from "$lib/scripts/Camera.js"
+    import {isMounted} from "$lib/scripts/stores.js";
+    import * as camera from "$lib/scripts/Camera.js";
 
     onMount(() => {
         // This code will run after the component is mounted and the DOM is ready
         camera.startCamera();
+
+        isMounted.set(true);
     })
 
 </script>

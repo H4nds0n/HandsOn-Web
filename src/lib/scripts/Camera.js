@@ -9,6 +9,9 @@ import {answerCorrect, letterAnswer, letterQuestion, leveltwo, wordQuestion, wor
 export let letter = {letter: "", conf: 0.0, handExists: false}
 let oldLetter = ''
 
+let videoStream;
+let intervalID;
+
 /**
  * Start the camera and the user can show ASL to the camera.
  * Camera sends the handsign to the Backend server to receive the
@@ -19,7 +22,7 @@ export async function startCamera() {
     if (navigator.mediaDevices.getUserMedia) {
         let video = document.querySelector('#videoElement');
         let canvas = document.querySelector('#frame');
-        await navigator.mediaDevices.getUserMedia({video: true})
+        videoStream = await navigator.mediaDevices.getUserMedia({video: true})
             .then((stream) => {
                 // @ts-ignore
                 video.srcObject = stream;
@@ -45,6 +48,7 @@ export async function startCamera() {
 
         //subscribe to variables to listen for changes
         quizActive.subscribe((value) => isQuiz = value)
+        console.log("quiz active", isQuiz);
         letterQuestion.subscribe((value) => questionLetter = value)
         letterAnswer.subscribe((value) => {
             answerLetter = value.split(" ")[1]?.toUpperCase()
@@ -57,7 +61,7 @@ export async function startCamera() {
 
 
         // Capture images every few milliseconds
-        setInterval(async () => {
+        intervalID = setInterval(async () => {
             // @ts-ignore
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
             // @ts-ignore
@@ -82,17 +86,23 @@ export async function startCamera() {
                 textareaValue.update(currentValue => currentValue + letter.letter);
             }
 
-            showNotification.set(letter.handExists)
+            showNotification.set(!letter.handExists)
           
             if(isQuiz) {
+                //console.log(letter.letter)
+
                 if(letter.letter !== oldLetter) {
                     oldLetter = letter.letter
-                    
-                    letterAnswer.set(letter.letter)
-                    
+
+                    console.log("letter", letter.letter)
+                    answerLetter = letter.letter.toUpperCase()
+                    console.log("letter2", answerLetter)
+
+                    //letterAnswer.set(letter.letter)
                 }
                 // question is a letter
                 if(!isLevelTwo){
+                    console.log("letter3", answerLetter)
                     textareaValue.set("Say: " + questionLetter + "\nYour Answer: " + answerLetter)
                      // remove any spaces before and after
                     if(questionLetter.trim() === answerLetter.trim()) {
@@ -133,5 +143,25 @@ export async function startCamera() {
          
     } else {
         console.log("getUserMedia not supported!");
+    }
+}
+
+/**
+ * Stop the camera and release the resources.
+ */
+export function stopCamera() {
+    if (videoStream) {
+        const tracks = videoStream.getTracks();
+        tracks.forEach(track => track.stop());
+        videoStream = null;
+
+        console.log("stopped");
+    }
+
+    if (intervalID) {
+        clearInterval(intervalID);
+        intervalID = null;
+
+        console.log("stopped");
     }
 }
