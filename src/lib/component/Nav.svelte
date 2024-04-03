@@ -7,12 +7,14 @@ Navbar - switch between Translator and Study session
     import {ArrowRightOutline, BarsSolid} from "flowbite-svelte-icons";
     import {hideHistory} from "$lib/scripts/stores.js";
 
+    let activeClass = "text-accent-200 font-bold dark:text-accent-50"
+
     $: activeUrl = $page.url.pathname;
 </script>
 
 <div class="sticky">
-    <Navbar class="border-b">
-        <NavBrand href="/">
+    <Navbar let:hidden class="border-b">
+        <NavBrand href="/homepage">
             <!--<img src="/images/flowbite-svelte-icon-logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />-->
             <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">HandsOn</span>
         </NavBrand>
@@ -23,9 +25,12 @@ Navbar - switch between Translator and Study session
             </Button>
         </div>
         <NavHamburger/>
-        <NavUl {activeUrl} class="ml-auto">
+        <NavUl {hidden} {activeUrl} {activeClass} class="ml-auto">
+            <NavLi href="/homepage" active={activeUrl === '/homepage'}>Homepage</NavLi>
             <NavLi href="/" active={activeUrl === '/'}>Translator</NavLi>
             <NavLi href="/study-ASL" active={activeUrl === "/study-ASL"}>Learn Sign Language</NavLi>
+            <NavLi href="/login" active={activeUrl === "/login"}>Login</NavLi>
+            <NavLi href="/register" active={activeUrl === "/register"}>Register</NavLi>
         </NavUl>
 
     </Navbar>
